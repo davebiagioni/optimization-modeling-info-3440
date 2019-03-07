@@ -21,11 +21,11 @@ def convert_2d_array_to_dict(arr):
     return {(i+1,j+1): arr[i,j] for i in range(arr.shape[0]) for j in range(arr.shape[1])}
 
 
-def solve(model, solver='glpk', tee=False, index=None):   
+def solve(model, solver='glpk', index=None):   
     '''Run the solver and parse the output to get objective value and decision variables.'''
     instance = model.create_instance()
     opt = pe.SolverFactory(solver)
-    result = opt.solve(instance, tee=tee)
+    result = opt.solve(instance)
     print(result)
     try:
         obj = instance.obj.expr()
